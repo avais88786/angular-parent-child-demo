@@ -1,0 +1,6 @@
+<h4>This is child component</h4>
+Current count From Parent is {{count}}<br/>
+Current count From Parent through component metadata is {{countThruMetadata}}<br/>
+Current count From Parent through Alias is {{countX}}
+<br/><br/>
+<input type="text" [(ngModel)]="childData" placeholder="data to parent" (ngModelChange)="sendDataToParent()"/>

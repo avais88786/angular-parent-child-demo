@@ -1,0 +1,8 @@
+<h2>This is parent component</h2>
+<button (click)="incrementCounter(true)" value="Increment Count">Increment Counter</button>
+<button (click)="incrementCounter(false)" value="Decrement Count">Decrement Counter</button>
+<br/> Data received from Child using event emitter : {{dataFromChild}}
+<br/> Data received from Child using Template Referencing Variable : {{childComp.childData}}
+<br/> Data received from Child using ViewChild Syntax : {{childComponent.childData}}
+<hr>
+<app-child [count]=counter [countThruMetadata]=counter [counterUsingAlias]=counter (dataChanged)="receivedDataFromChild($event)" #childComp></app-child>
