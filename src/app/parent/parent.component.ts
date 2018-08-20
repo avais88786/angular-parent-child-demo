@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnChanges, SimpleChanges, AfterViewInit, AfterViewChecked } from '@angular/core';
 import { ChildComponent } from '../child/child.component';
 
 @Component({
@@ -6,7 +6,7 @@ import { ChildComponent } from '../child/child.component';
   templateUrl: './parent.component.html',
   styleUrls: ['./parent.component.css']
 })
-export class ParentComponent implements OnInit {
+export class ParentComponent implements OnInit, OnChanges, AfterViewInit, AfterViewChecked {
 
   counter: number = 0;
 
@@ -14,9 +14,25 @@ export class ParentComponent implements OnInit {
 
   @ViewChild(ChildComponent) childComponent: ChildComponent;
 
+  data2FromChild: string;
+  data3FromChild: number;
+
   constructor() { }
 
   ngOnInit() {
+    // this.data2FromChild = this.childComponent.anotherProperty;
+    // this.data3FromChild = this.childComponent.oneMoreProperty;
+  }
+
+  ngAfterViewInit() {
+   
+  }
+
+  ngAfterViewChecked(): void {
+    setTimeout(() => {
+      this.data2FromChild = this.childComponent.anotherProperty;
+      }, 0);
+      this.data3FromChild = this.childComponent.oneMoreProperty;
   }
 
   incrementCounter(increment: boolean) {
@@ -29,5 +45,19 @@ export class ParentComponent implements OnInit {
 
   receivedDataFromChild(childData: string) {
     this.dataFromChild = childData;
+  }
+
+  refreshViewChild() {
+    this.data2FromChild = this.childComponent.anotherProperty;
+    this.data3FromChild = this.childComponent.oneMoreProperty;
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    for (let propName in changes) {
+      let chng = changes[propName];
+      let cur = JSON.stringify(chng.currentValue);
+      let prev = JSON.stringify(chng.previousValue);
+      console.log(`${propName}: currentValue = ${cur}, previousValue = ${prev}`);
+    }
   }
 }

@@ -3,6 +3,8 @@
 <button (click)="incrementCounter(false)" value="Decrement Count">Decrement Counter</button>
 <br/> Data received from Child using event emitter : {{dataFromChild}}
 <br/> Data received from Child using Template Referencing Variable : {{childComp.childData}}
-<br/> Data received from Child using ViewChild Syntax : {{childComponent.childData}}
+<br/> Data received from Child using ViewChild Syntax : {{childComponent.childData}}, More Data: {{data2FromChild}}, AdditionalData: {{childComponent.oneMoreProperty}}
+<button (click)="refreshViewChild()" value="refresh view child">Refresh View Child</button>
+
 <hr>
 <app-child [count]=counter [countThruMetadata]=counter [counterUsingAlias]=counter (dataChanged)="receivedDataFromChild($event)" #childComp></app-child>

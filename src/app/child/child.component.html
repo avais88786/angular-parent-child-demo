@@ -4,3 +4,8 @@ Current count From Parent through component metadata is {{countThruMetadata}}<br
 Current count From Parent through Alias is {{countX}}
 <br/><br/>
 <input type="text" [(ngModel)]="childData" placeholder="data to parent" (ngModelChange)="sendDataToParent()"/>
+
+
+<input type="text" [(ngModel)]="anotherProperty" placeholder="data2 to parent" />
+<input type="text" [(ngModel)]="oneMoreProperty" placeholder="data3 to parent" />
+{{anotherProperty}}

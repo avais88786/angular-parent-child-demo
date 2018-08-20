@@ -16,6 +16,10 @@ export class ChildComponent implements OnInit {
 
   childData: string;
 
+  anotherProperty: string = "Another Property";
+
+  oneMoreProperty: number = 2;
+
   @Input('counterUsingAlias')
   countX: number;
 
